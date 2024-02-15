@@ -1,0 +1,304 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    background: #F8F7F9;
+    font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+#top {
+    margin: 0;
+    display: flex;
+    font-weight: 300;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 300;
+    margin: 0px auto;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+.input-label {
+    margin: 10px 10px;
+    appearance: none;
+    flex: 1 1 auto;
+    min-width: 250px;
+    max-width: 300px;
+    text-align: center;
+}
+
+.input-label input[type="number"] {
+    appearance: none;
+    border: 1px solid #b0b0b0;
+    border-radius: 0;
+    width: 60px; 
+    height: 25px;
+    margin-left: 10px; 
+}
+
+.input-label input[type="number"]:focus {
+    outline: 0;
+    box-shadow: 0 0 0 1.5px #FAACA8;
+}
+
+#input-value {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#formula {
+    font-size: 30px;
+}
+
+#changeColor {
+    margin-top: 10px;
+}
+
+#changeColor button {
+    margin: auto 15px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+}
+
+#button-blue{
+    background: linear-gradient(to left, #009efd, #2af598);
+}
+
+#button-orenge{
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+}
+
+#button-pink{
+    background: linear-gradient(to right, #FAACA8, #DDD6F3);
+}
+
+#formulaToggle{
+    display: flex;
+    align-items: center;
+
+}
+
+#formulaToggle p{
+    margin-right: 10px;
+}
+
+#toggle-button{
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100px;
+    height: 50px;
+    border-radius: 50px;
+    box-sizing: content-box;
+    background-color: #009efd33;
+    cursor: pointer;
+    transition: background-color .4s;
+    margin: 20px auto;
+    
+}
+
+#toggle-button:has(:checked) {
+    background-color: #ff7e5f33;
+}
+
+#toggle-button::before {
+    position: absolute;
+    left: 5px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: #009efd;
+    content: '';
+    transition: left .4s;
+}
+
+#toggle-button:has(:checked)::before {
+    left: 50px;
+    background-color: #ff7e5f;
+}
+
+#toggle-button::after {
+    position: absolute;
+    left: 26px;
+    transform: translateX(-50%);
+    color: #fff;
+    font-weight: 600;
+    font-size: .8em;
+    content: '無し';
+    transition: left .4s;
+}
+
+#toggle-button:has(:checked)::after {
+    left: 71px;
+    content: '有り';
+}
+
+#toggle-button input {
+    display: none;
+}
+
+#button-save {
+    color: #F8F7F9;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    width: 10%;
+    padding: 10px;
+    min-width: 200px;
+    max-width: 500px;
+    border: none;
+    background: linear-gradient(to right, #009efd, #2af598);
+    border-radius: 25vh;
+}
+
+#button-save:hover {
+    background: linear-gradient(to right, #4eb8fa, #6ff7ba);
+}
+
+canvas {
+    display: block;
+}
+
+.start {
+	background: linear-gradient(to right, #009efd, #2af598);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 9000;
+}
+.start p {
+	position: absolute;
+    color: #F8F7F9;
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+    padding: auto 100;
+	left: 50%;
+    top: 50%;
+	transform: translate(-50%, -50%);
+	display: none;
+	width: 70%;
+    font-size: 120px;
+}
+
+#explanation{
+    margin: 80px auto;
+    line-height: 2;
+}
+
+.title {
+    margin: 15px auto;
+    font-weight: 500;
+    background: linear-gradient(to right, #009efd, #2af598);
+    color: #F8F7F9;
+    width: 100%;
+}
+
+.element {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(30px);
+    transition: opacity 1s, visibility 1s, transform 1s;
+
+}
+
+.is-fadein {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+#formulaString {
+    font-weight: 500;
+    font-size: 30px;
+    text-align: center;
+}
+
+footer {
+    background: linear-gradient(to right, #009efd, #2af598);
+    height: 50px;
+    color: #F8F7F9;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-content {
+    width: 100%;
+}
+
+/* For smartphones */
+@media (max-width: 767px) {
+    #formula {
+        font-size: 18px;
+    }
+    body {
+        font-size: 12px;
+    }
+    .title{
+        font-size: 22px;
+    }
+    #formulaString {
+        font-size: 20px;
+    }
+    .start p {
+        font-size: 60px;
+    }
+}
+
+/* For tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+    #formula {
+        font-size: 24px;
+    }
+    body {
+        font-size: 16px;
+    }
+    .title{
+        font-size: 30px;
+    }
+    #formulaString {
+        font-size: 26px;
+    }
+    .start p {
+        font-size: 80px;
+    }
+}
+
+/* For PCs */
+@media (min-width: 1025px) {
+    #formula {
+        font-size: 30px;
+    }
+    body {
+        font-size: 18px;
+    }
+    .title{
+        font-size: 35px;
+    }
+    #formulaString {
+        font-size: 30px;
+    }
+    .start p {
+        font-size: 120px;
+    }
+
+}

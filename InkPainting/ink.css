@@ -1,0 +1,156 @@
+:root {
+  --back: #f7fcfe;
+  --blue: #0f2350;
+  --white: #fbfaf5;
+  --red: #d3381c;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Zen Antique Soft', serif;
+  box-sizing: border-box;
+  background: var(--back);
+  height: 100%;
+  width: 100%;
+}
+
+#top {
+  height: 100vh;
+}
+
+#header-ui {
+  height: 15%;
+  display: flex;
+}
+
+#header-logo{
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#header-logo img {
+  height: 90%;
+}
+
+#header-btn {
+  width: 85%;
+  display: flex;
+  align-items: center;
+}
+
+#header-btn input[type=image] {
+  width: 10%;
+  min-width: 80px;
+  margin: 0px 20px;
+}
+
+#center {
+  height: 85%;
+  display: flex;
+}
+
+#side-ui{
+  width: 15%;
+  display: flex;
+  flex-flow: column;
+}
+
+#sketch-ui {
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#sketch{
+  width: 98%;
+  height: 95%;
+  border: solid 0.1px var(--blue);
+  box-shadow: 5px 5px 5px #969696;
+}
+
+#color-ui {
+  height: 60%;
+  padding-top: 30px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.color-ellipse{
+  width: 100px;
+  height: 100px;
+  min-width: 50px;
+  margin: 10px auto;
+  height: width;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+}
+
+#color-ui input[type=image] {
+  padding: 5%;
+  min-width: 50px;
+}
+
+
+
+#weight-ui {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+input[type=range]#weight-slider {
+  transform: rotate(-0.25turn);
+  -webkit-appearance: none; 
+  appearance: none;
+  cursor: pointer;
+  height: 7px;
+  background: var(--blue);
+  border-radius: 10px;
+  outline: none;
+  margin-top: 40px;
+  border: solid 2px #969696;
+}
+
+input[type="range"]#weight-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; 
+  background: var(--red); 
+  width: 24px; 
+  height: 24px; 
+  border-radius: 50%;
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15); 
+}
+
+#weight-text {
+  margin-top: 60px;
+  font-size: 20px;
+}
+
+.start {
+  background: var(--white);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9000;
+}
+
+.start img {
+  width: 50%;
+  position: fixed;
+  display: none;
+}
+
+.start p {
+  margin-top: 40%;
+  display: none;
+}

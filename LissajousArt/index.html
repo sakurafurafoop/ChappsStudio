@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500&family=Zen+Maru+Gothic:wght@300;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="image/favicon_lissajousArt.ico">
+    <script src="js/lissajousArt.js"></script>
+    <script src="js/move.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-store">
+</head>
+
+<body>
+    <main>
+        <div id="top">
+            <div id="sketch-lissajousArt"></div>
+            <div id="input-value">
+                <label class="input-label">横方向の振動の速さ<input type="number" id="input-horizontal" value="1" min="1"
+                        max="10"></label>
+                <label class="input-label">縦方向の振動の速さ<input type="number" id="input-vertical" value="1" min="1"
+                        max="10"></label>
+                <label class="input-label">足す数<input type="number" class="input-num" id="input-add" value="0" min="0" max="350"
+                        step="10"></label>
+            </div>
+            <div id="changeColor">
+                <button id="button-blue"></button>
+                <button id="button-orenge"></button>
+                <button id="button-pink"></button>
+            </div>
+            <div id="formulaToggle">
+                <p>式</p>
+                <label id="toggle-button">
+                    <input id="toggle-check" type="checkbox" checked>
+                </label>
+            </div>
+            <button id="button-save">画像を保存</button>
+        </div>
+        <div id="explanation">
+            <h1 class="title element">リサージュ図形とは</h1>
+            <p class="element">リサージュ図形は、直交する2つの単振動が組み合わさって作られます。<br>縦と横,それぞれの振動の速さ、2つの振動のズレ(位相差)によって様々な形が描かれます。</p>
+            <p class="element">リサージュ図形は、以下のような式で表します。</p>
+            <p class="element" id="formulaString">x = Acos(at), y = Bsin(bt + δ)</p>
+            <p class="element">A,B : 振幅</p>
+            <p class="element">a,b : 角周波数</p>
+            <p class="element">δ : 位相差</p>
+            <p class="element">数字を変えて、どんな図形が出来るか試してみましょう。</p>
+        </div>
+
+    </main>
+
+    <div class="start">
+        <p>Lissajous Art</p>
+    </div>
+</body>
+<footer>
+    <div class="footer-content">
+        <p>Chapps Studio</p>
+    </div>
+</footer>
+
+
+</html>

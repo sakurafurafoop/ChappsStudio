@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="ink.css">
+  <link rel="icon" href="images/favicon_ink.ico">
+  <script src="Js/inkMove.js"></script>
+  <script src="Js/ink.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-store">
+</head>
+
+<body>
+
+  <main>
+    <div id="top">
+      <div id="header-ui">
+        <div id="header-logo">
+          <img src="images/inkLogo.png" alt="水墨画ロゴ">
+        </div>
+        <div id="header-btn">
+          <input type="image" id="btn-new" src="images/btn_new.png"></button> 
+          <input type="image" id="btn-save" src="images/btn_save.png"></button>
+        </div>
+      </div>  
+      <div id="center">
+        <div id="side-ui">
+          <div id="color-ui">
+            <div class="color-ellipse" id="sumiiro-ellipse">
+              <input type="image" id="btn-sumiiro" src="images/btn_sumiiro.png" alt="墨色">
+            </div>
+            
+            <div class="color-ellipse" id="akasumi-ellipse">
+              <input type="image" id="btn-akasumi" src="images/btn_akasumi.png" alt="赤墨">
+            </div>
+            <div class="color-ellipse" id="hiiro-ellipse">
+              <input type="image" id="btn-hiiro" src="images/btn_hiiro.png" alt="緋色">
+            </div>
+
+          </div>
+          <div id="weight-ui">
+            <input value="1" type="range" id="weight-slider" min="0" max="3" step="0.5">
+            <p id="weight-text"></p>
+          </div>
+
+        </div>
+        <div id="sketch-ui">
+          <div id="sketch"></div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </main>
+  <div class="start">
+    <img src="images/inkLogo.png">
+    <p>このサイトはPC推薦です。</p>
+  </div>
+</body>
+<footer></footer>
+
+</html>
