@@ -6,8 +6,8 @@ let prevFrames; // 10フレームを保存する配列
 let isCamera; // カメラが使用できるかどうか
 let isPush; // ボタンを押しているかどうか
 let isDraw; // 絵を描き続けるかどうか
-const RATE = 1; // frameRate
-const FRAMES = 2;
+const RATE = 10; // frameRate
+const FRAMES = 5;
 let btnPush;
 let btnSave;
 let btnReset;
@@ -21,24 +21,26 @@ function setup(){
     isCamera = false;
     isPush = false;
     frameRate(RATE);
-
     // buttonの設定
     btnPush = document.getElementById('btn_push');
     btnPush.disabled = true;
-    btnPush.addEventListener('mousedown', startPress);
-    btnPush.addEventListener('mouseup', stopPress);
+    btnPush.onclick = pressPush;
+    btnPush.addEventListener('mousedown', pressPush);
     btnSave = document.getElementById('btn_save');
-    btnSave.disabled = true;
     btnSave.onclick = saveImg;
+    btnSave.disabled = true;
     btnReset = document.getElementById('btn_reset');
-    btnReset.disabled = true;
     btnReset.onclick = reset;
-
+    btnReset.disabled = true;
     canvas = createCanvas(windowWidth, windowHeight, WEBGL);
-    cam = createCapture(VIDEO, function(){
-        isCamera = true;
-        btnPush.disabled = false;
-    });
+    cam = createCapture({
+        audio: false,
+        video: {facingMode: "environment"}},
+        function(){
+            isCamera = true;
+            btnPush.disabled = false;
+        }
+    );
     cam.size(windowWidth, windowHeight);
     cam.hide();
     setFrames();
@@ -49,8 +51,16 @@ function setFrames(){
     for(let i = 0; i < FRAMES; i++){
         prevFrames.push(createGraphics(windowWidth, windowHeight, WEBGL));
     }
+}
+
+//　実質フレームの初期化関数
+function initFrames(){
+    btnSave.disabled = true;
+    btnReset.disabled = true;
     btnPush.disabled = false;
 }
+
+
 
 function draw(){
     if(isDraw){
@@ -61,7 +71,12 @@ function draw(){
     }
 
     if(isPush){
-        takePhoto();
+        if(timeCount < FRAMES){
+            takePhoto();
+        }
+        else{
+            stopPhoto();
+        }
     }
 }
 
@@ -74,6 +89,7 @@ function displayCamera(){
 }
 
 function displayImage(){   
+    mixShader.setUniform('frames', timeCount);
     shader(mixShader);
     rect(0, 0, width, height);   
 }
@@ -85,32 +101,29 @@ function takePhoto(){
     timeCount++;
 }
 
-function startPress(){
+function pressPush(){
     if(!isCamera) return;
     frameRate(RATE);
     isPush = true;
     isDraw = true;
     timeCount = 0;
-    prevFrames[0].image(cam, -width / 2, -height / 2, width, height);
-    mixShader.setUniform('tex0', prevFrames[0]);
-}
-
-function stopPress(){
-    isPush = false;
-    prevFrames[1].image(cam, -width / 2, -height / 2, width, height);
-    mixShader.setUniform('tex1', prevFrames[1]);
-    btnSave.disabled = false;
-    btnReset.disabled = false;
     btnPush.disabled = true;
 }
 
+function stopPhoto(){
+    if(!isPush) return;
+    isPush = false;
+    btnSave.disabled = false;
+    btnReset.disabled = false;
+    
+}
+
 function saveImg(){
-    print('save');
     btnSave.disabled = true;
     saveCanvas(canvas, 'dynamicCamera', 'jpg')
 }
 
 function reset(){
     isDraw = false;
-    setFrames();
+    initFrames();
 }
