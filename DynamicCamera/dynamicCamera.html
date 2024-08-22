@@ -7,6 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     <meta charset="utf-8"/>
     <script src="dynamicCamera.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
@@ -15,14 +18,21 @@
 
 <body>
     <main>
+        <div id="btns_filter">
+            <button class="btn_filter" id="filter_1">filter1</button>
+            <button class="btn_filter" id="filter_2">filter2</button>
+            <button class="btn_filter" id="filter_original">original</button>
+            <button class="btn_filter" id="filter_3">filter3</button>
+            <button class="btn_filter" id="filter_4">filter4</button>
+        </div>
         <div id="sketch"></div>
         <div id="btns">
             <div id="btns_over">
                 <button id="btn_push">Push!</button>
             </div>          
             <div id="btns_under">
-                <button id="btn_save">Save</button>
-                <button id="btn_reset">Reset</button>
+                <button class="btns_rect" id="btn_save">Save</button>
+                <button class="btns_rect" id="btn_reset">Reset</button>
             </div>
         </div>
     </main>

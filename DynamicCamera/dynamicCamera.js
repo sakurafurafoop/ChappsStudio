@@ -1,6 +1,7 @@
 let sketch = function(s) {
     let canvas;
     let cam;
+    let filter;
     let camShader;
     let mixShader;
     let prevFrames = []; // 10フレームを保存する配列
@@ -9,8 +10,13 @@ let sketch = function(s) {
     let isDraw = false; // 絵を描き続けるかどうか
     const RATE = 10; // frameRate
     const FRAMES = 5;
+    const SCALE = 0.7;
     let timeCount = 0; 
     let btnPush;
+    let btnSave;
+    let btnReset;
+    let btnOriginal;
+    let btnFilter1, btnFilter2, btnFilter3, btnFilter4;
 
     s.preload = function() {
         camShader = s.loadShader('cam.vert', 'cam.frag');
@@ -19,7 +25,20 @@ let sketch = function(s) {
 
     s.setup = function() {
         btnPush = document.getElementById('btn_push');
-        canvas = s.createCanvas(s.windowWidth * 0.8, s.windowHeight * 0.8, s.WEBGL);
+        btnSave = document.getElementById('btn_save');
+        btnReset = document.getElementById('btn_reset')
+        btnOriginal = document.getElementById('filter_original');
+        btnFilter1 = document.getElementById('filter_1');
+        btnFilter2 = document.getElementById('filter_2');
+        btnFilter3 = document.getElementById('filter_3');
+        btnFilter4 = document.getElementById('filter_4');
+        btnOriginal.addEventListener('click', () => displayFilter(s.color(20, 50)));
+        btnFilter1.addEventListener('click', () => displayFilter(s.color(100, 50)));
+        btnFilter2.addEventListener('click', () => displayFilter(s.color(120, 50)));
+        btnFilter3.addEventListener('click', () => displayFilter(s.color(140, 50)));
+        btnFilter4.addEventListener('click', () => displayFilter(s.color(160, 50)));
+        canvas = s.createCanvas(s.windowWidth * SCALE, s.windowHeight * SCALE, s.WEBGL);
+        filter = s.createGraphics(s.windowWidth * SCALE, s.windowHeight * SCALE);
         cam = s.createCapture({
             audio: false,
             video: { facingMode: "environment" }
@@ -32,20 +51,20 @@ let sketch = function(s) {
         setFrames();
         btnPush.addEventListener('click', pressPush);
         btnPush.disabled = true;
-        document.getElementById('btn_save').addEventListener('click', saveImg);
-        document.getElementById('btn_reset').addEventListener('click', reset);
+        btnSave.addEventListener('click', saveImg);
+        btnReset.addEventListener('click', reset);
     };
 
     function setFrames() {
         prevFrames = [];
         for (let i = 0; i < FRAMES; i++) {
-            prevFrames.push(s.createGraphics(s.windowWidth * 0.8, s.windowHeight * 0.8, s.WEBGL));
+            prevFrames.push(s.createGraphics(s.windowWidth * SCALE, s.windowHeight * SCALE, s.WEBGL));
         }
     }
 
     function initFrames() {
-        document.getElementById('btn_save').disabled = true;
-        document.getElementById('btn_reset').disabled = true;
+        btnSave.disabled = true;
+        btnReset.disabled = true;
         btnPush.disabled = false;
     }
 
@@ -92,18 +111,18 @@ let sketch = function(s) {
         isPush = true;
         isDraw = true;
         timeCount = 0;
-        document.getElementById('btn_push').disabled = true;
+        btnPush.disabled = true;
     }
 
     function stopPhoto() {
         if (!isPush) return;
         isPush = false;
-        document.getElementById('btn_save').disabled = false;
-        document.getElementById('btn_reset').disabled = false;
+        btnSave.disabled = false;
+        btnReset.disabled = false;
     }
 
     function saveImg() {
-        document.getElementById('btn_save').disabled = true;
+        btnSave.disabled = true;
         s.saveCanvas(canvas, 'dynamicCamera', 'jpg');
     }
 
@@ -112,7 +131,11 @@ let sketch = function(s) {
         initFrames();
     }
 
-    // イベントリスナーの設定
+    function displayFilter(col){
+        filter.fill(col);
+        filter.rect(0, 0, s.width, s.height);
+        s.image(filter, 0, 0);
+    }
 
 };
 
